@@ -1,20 +1,21 @@
-import { writeTodos } from "../api/todosApi";
 import { useInput } from "../hooks/useInput";
-import { todoList } from "../util/type";
+import { useWriteTodoMutation } from "../util/logic/todoListQuery";
+import { TodoList } from "../util/type";
 
 const Input = () => {
   const [todoTitle, onChangeTodoTitle] = useInput();
   const [todoContent, onChangeTodoContent] = useInput();
+  const addMutation = useWriteTodoMutation();
 
   const onSubmitWriteHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newTodo: todoList = {
+    const newTodo: TodoList = {
       id: crypto.randomUUID(),
       title: todoTitle,
       content: todoContent,
       isDone: false,
     };
-    writeTodos(newTodo);
+    addMutation.mutate(newTodo);
   };
   return (
     <form onSubmit={onSubmitWriteHandler}>
