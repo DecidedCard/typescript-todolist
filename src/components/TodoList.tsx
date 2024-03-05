@@ -1,7 +1,9 @@
-import { useTodoList } from "../util/logic/todoListQuery";
+import * as QR from "../util/logic/todoListQuery";
 
 const TodoList = () => {
-  const { isLoading, isError, data } = useTodoList();
+  const { isLoading, isError, data } = QR.useTodoList();
+  const deleteMutation = QR.useDeleteTodoMutation();
+  const updateMutation = QR.useUpdateTodoMutation();
 
   if (isLoading) {
     return <div>로딩중입니다.</div>;
@@ -18,8 +20,10 @@ const TodoList = () => {
           <div key={item.id}>
             <p>{item.title}</p>
             <p>{item.content}</p>
-            <button>{item.isDone ? "취소" : "완료"}</button>
-            <button>삭제</button>
+            <button onClick={() => updateMutation.mutate(item)}>
+              {item.isDone ? "취소" : "완료"}
+            </button>
+            <button onClick={() => deleteMutation.mutate(item.id)}>삭제</button>
           </div>
         );
       })}

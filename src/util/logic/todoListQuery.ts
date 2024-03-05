@@ -5,7 +5,12 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { TodoList } from "../type";
-import { getTodos, writeTodo } from "../../api/todosApi";
+import {
+  deleteTodo,
+  getTodos,
+  updateTodo,
+  writeTodo,
+} from "../../api/todosApi";
 
 const todoQueryKey = "todoList";
 export const useTodoList = () => {
@@ -24,6 +29,34 @@ export const useWriteTodoMutation = (): UseMutationResult<
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: writeTodo,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [todoQueryKey] });
+    },
+  });
+};
+
+export const useDeleteTodoMutation = (): UseMutationResult<
+  TodoList,
+  Error,
+  string
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: deleteTodo,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [todoQueryKey] });
+    },
+  });
+};
+
+export const useUpdateTodoMutation = (): UseMutationResult<
+  TodoList,
+  Error,
+  TodoList
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateTodo,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [todoQueryKey] });
     },
