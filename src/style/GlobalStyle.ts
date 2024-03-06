@@ -28,6 +28,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	box-sizing: border-box;
+	min-width: 800px;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 ol, ul {
 	list-style: none;
@@ -44,6 +48,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 `;
 
 export default GlobalStyle;
