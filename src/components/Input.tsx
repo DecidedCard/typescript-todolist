@@ -20,17 +20,26 @@ const Input = () => {
   };
   return (
     <IS.InputFormStyle onSubmit={onSubmitWriteHandler}>
-      <IS.InputStyle
-        placeholder="제목을 입력해주세요"
-        value={todoTitle}
-        onChange={onChangeTodoTitle}
-      />
-      <IS.InputStyle
-        placeholder="내용을 입력해주세요"
-        value={todoContent}
-        onChange={onChangeTodoContent}
-      />
-      <IS.InputBtnStyle type="submit">등록</IS.InputBtnStyle>
+      <label>오늘의 할일을 입력해 주세요.</label>
+      <IS.InputContainer>
+        <div>
+          <label>제목: </label>
+          <IS.InputStyle
+            placeholder="제목을 입력해주세요"
+            value={todoTitle}
+            onChange={onChangeTodoTitle}
+          />
+        </div>
+        <div>
+          <label>내용: </label>
+          <IS.InputStyle
+            placeholder="내용을 입력해주세요"
+            value={todoContent}
+            onChange={onChangeTodoContent}
+          />
+        </div>
+        <IS.InputBtnStyle type="submit">등록</IS.InputBtnStyle>
+      </IS.InputContainer>
     </IS.InputFormStyle>
   );
 };
