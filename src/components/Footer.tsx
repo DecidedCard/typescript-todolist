@@ -14,7 +14,10 @@ const Footer = () => {
       </FS.FooterInfo>
       <FS.FooterInfo>
         <p>
-          blog: <a href=""></a>
+          blog:{" "}
+          <a href="https://velog.io/@decidedcard/posts">
+            https://velog.io/@decidedcard/posts
+          </a>
         </p>
         <p>
           Github:{" "}
