@@ -24,14 +24,6 @@ mutation의 경우에도 타입을 지정해주어야 하고 뮤테이션의 경
 
 ## 시작 가이드
 
-env 파일을 만드셔서
-
-```env
-VITE_API_URL=http://localhost:4000
-```
-
-작성해주시고 해주시면 감사하겠습니다.
-
 ```bash
 git clone https://github.com/DecidedCard/typescript-todolist.git .
 yarn
@@ -40,4 +32,3 @@ yarn dev
 ```
 
 yarn json의 경우 포트번호 4000번으로 json-server가 실행되게 설정되어 있습니다.
-클론하시고 위의 env파일을 만들어 주신 이후에 yarn json 및 yarn dev를 해주시기 바랍니다.
