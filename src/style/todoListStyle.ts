@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TodoListSection = styled.section`
   display: flex;
@@ -32,9 +32,18 @@ export const TodoContainer = styled.div`
   border-radius: 12px;
 `;
 
-export const TodoBtnStyle = styled.button`
+export const TodoBtnDivStyle = styled.div`
+  margin-left: auto;
+`;
+
+export const TodoBtnStyle = styled.button<{ checkBtn: boolean }>`
   background-color: lightblue;
   margin: 0 5px;
   border: none;
   border-radius: 8px;
+  ${(props) =>
+    props.checkBtn &&
+    css`
+      background-color: lightcoral;
+    `}
 `;

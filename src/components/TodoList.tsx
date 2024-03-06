@@ -32,14 +32,20 @@ const TodoList = ({ checkDone }: TodoListPropsType) => {
                 <label>내용: </label>
                 {item.content}
               </p>
-              <div>
-                <TS.TodoBtnStyle onClick={() => updateMutation.mutate(item)}>
+              <TS.TodoBtnDivStyle>
+                <TS.TodoBtnStyle
+                  onClick={() => updateMutation.mutate(item)}
+                  checkBtn={false}
+                >
                   {item.isDone ? "취소" : "완료"}
                 </TS.TodoBtnStyle>
-                <TS.TodoBtnStyle onClick={() => deleteMutation.mutate(item.id)}>
+                <TS.TodoBtnStyle
+                  onClick={() => deleteMutation.mutate(item.id)}
+                  checkBtn={true}
+                >
                   삭제
                 </TS.TodoBtnStyle>
-              </div>
+              </TS.TodoBtnDivStyle>
             </TS.TodoContainer>
           ) : (
             false
