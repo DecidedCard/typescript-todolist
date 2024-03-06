@@ -1,11 +1,33 @@
 import * as QR from "../util/logic/todoListQuery";
-import { TodoListPropsType } from "../util/type";
+import { TodoListType, TodoListPropsType } from "../util/type";
 import * as TS from "../style/todoListStyle";
 
 const TodoList = ({ checkDone }: TodoListPropsType) => {
   const { isLoading, isError, data } = QR.useTodoList();
   const deleteMutation = QR.useDeleteTodoMutation();
   const updateMutation = QR.useUpdateTodoMutation();
+
+  const onClickUpdateHandler = (item: TodoListType) => {
+    const result = window.confirm(
+      item.isDone ? "아직 진행중이신가요?" : "완료하시겠습니까?"
+    );
+    if (result) {
+      updateMutation.mutate(item);
+      alert("변경하였습니다.");
+    } else {
+      alert("취소되었습니다.");
+    }
+  };
+
+  const onClickDeleteHandler = (id: string) => {
+    const result = window.confirm("삭제하시겠습니까?");
+    if (result) {
+      deleteMutation.mutate(id);
+      alert("삭제되었습니다.");
+    } else {
+      alert("취소되었습니다.");
+    }
+  };
 
   if (isLoading) {
     return <div>로딩중입니다.</div>;
@@ -34,13 +56,13 @@ const TodoList = ({ checkDone }: TodoListPropsType) => {
               </p>
               <TS.TodoBtnDivStyle>
                 <TS.TodoBtnStyle
-                  onClick={() => updateMutation.mutate(item)}
+                  onClick={() => onClickUpdateHandler(item)}
                   $checkBtn={false}
                 >
                   {item.isDone ? "취소" : "완료"}
                 </TS.TodoBtnStyle>
                 <TS.TodoBtnStyle
-                  onClick={() => deleteMutation.mutate(item.id)}
+                  onClick={() => onClickDeleteHandler(item.id)}
                   $checkBtn={true}
                 >
                   삭제

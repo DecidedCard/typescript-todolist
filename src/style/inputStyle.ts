@@ -14,12 +14,12 @@ export const InputContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 300px;
+  width: 350px;
   height: 200px;
 `;
 
 export const InputStyle = styled.input`
-  width: 200px;
+  width: 300px;
   height: 30px;
   border-radius: 8px;
   border: none;
