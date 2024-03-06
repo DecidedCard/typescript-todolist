@@ -35,13 +35,13 @@ const TodoList = ({ checkDone }: TodoListPropsType) => {
               <TS.TodoBtnDivStyle>
                 <TS.TodoBtnStyle
                   onClick={() => updateMutation.mutate(item)}
-                  checkBtn={false}
+                  $checkBtn={false}
                 >
                   {item.isDone ? "취소" : "완료"}
                 </TS.TodoBtnStyle>
                 <TS.TodoBtnStyle
                   onClick={() => deleteMutation.mutate(item.id)}
-                  checkBtn={true}
+                  $checkBtn={true}
                 >
                   삭제
                 </TS.TodoBtnStyle>

@@ -36,13 +36,13 @@ export const TodoBtnDivStyle = styled.div`
   margin-left: auto;
 `;
 
-export const TodoBtnStyle = styled.button<{ checkBtn: boolean }>`
+export const TodoBtnStyle = styled.button<{ $checkBtn: boolean }>`
   background-color: lightblue;
   margin: 0 5px;
   border: none;
   border-radius: 8px;
   ${(props) =>
-    props.checkBtn &&
+    props.$checkBtn &&
     css`
       background-color: lightcoral;
     `}
