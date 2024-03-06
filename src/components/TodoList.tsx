@@ -1,5 +1,6 @@
 import * as QR from "../util/logic/todoListQuery";
 import { TodoListPropsType } from "../util/type";
+import * as TS from "../style/todoListStyle";
 
 const TodoList = ({ checkDone }: TodoListPropsType) => {
   const { isLoading, isError, data } = QR.useTodoList();
@@ -15,23 +16,37 @@ const TodoList = ({ checkDone }: TodoListPropsType) => {
   }
 
   return (
-    <div>
-      <h2>{checkDone ? "Done!" : "Working..."}</h2>
-      {data?.map((item) => {
-        return checkDone === item.isDone ? (
-          <div key={item.id}>
-            <p>{item.title}</p>
-            <p>{item.content}</p>
-            <button onClick={() => updateMutation.mutate(item)}>
-              {item.isDone ? "취소" : "완료"}
-            </button>
-            <button onClick={() => deleteMutation.mutate(item.id)}>삭제</button>
-          </div>
-        ) : (
-          false
-        );
-      })}
-    </div>
+    <TS.TodoListSection>
+      <TS.TodoListTitleStyle>
+        {checkDone ? "Done!" : "Working..."}
+      </TS.TodoListTitleStyle>
+      <TS.TodoListContainer>
+        {data?.map((item) => {
+          return checkDone === item.isDone ? (
+            <TS.TodoContainer key={item.id}>
+              <p>
+                <label>제목: </label>
+                {item.title}
+              </p>
+              <p>
+                <label>내용: </label>
+                {item.content}
+              </p>
+              <div>
+                <TS.TodoBtnStyle onClick={() => updateMutation.mutate(item)}>
+                  {item.isDone ? "취소" : "완료"}
+                </TS.TodoBtnStyle>
+                <TS.TodoBtnStyle onClick={() => deleteMutation.mutate(item.id)}>
+                  삭제
+                </TS.TodoBtnStyle>
+              </div>
+            </TS.TodoContainer>
+          ) : (
+            false
+          );
+        })}
+      </TS.TodoListContainer>
+    </TS.TodoListSection>
   );
 };
 
