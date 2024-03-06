@@ -4,7 +4,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { TodoList } from "../type";
+import { TodoListType } from "../type";
 import {
   deleteTodo,
   getTodos,
@@ -14,7 +14,7 @@ import {
 
 const todoQueryKey = "todoList";
 export const useTodoList = () => {
-  const { isLoading, isError, data } = useQuery<TodoList[]>({
+  const { isLoading, isError, data } = useQuery<TodoListType[]>({
     queryKey: [todoQueryKey],
     queryFn: getTodos,
   });
@@ -22,9 +22,9 @@ export const useTodoList = () => {
 };
 
 export const useWriteTodoMutation = (): UseMutationResult<
-  TodoList,
+  TodoListType,
   Error,
-  TodoList
+  TodoListType
 > => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -36,7 +36,7 @@ export const useWriteTodoMutation = (): UseMutationResult<
 };
 
 export const useDeleteTodoMutation = (): UseMutationResult<
-  TodoList,
+  TodoListType,
   Error,
   string
 > => {
@@ -50,9 +50,9 @@ export const useDeleteTodoMutation = (): UseMutationResult<
 };
 
 export const useUpdateTodoMutation = (): UseMutationResult<
-  TodoList,
+  TodoListType,
   Error,
-  TodoList
+  TodoListType
 > => {
   const queryClient = useQueryClient();
   return useMutation({

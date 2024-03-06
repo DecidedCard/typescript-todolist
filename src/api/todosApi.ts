@@ -1,7 +1,7 @@
-import { TodoList } from "../util/type";
+import { TodoListType } from "../util/type";
 import todos from "./todos";
 
-export const getTodos = async (): Promise<TodoList[]> => {
+export const getTodos = async (): Promise<TodoListType[]> => {
   try {
     const res = await todos.get("/todos");
     return res.data;
@@ -11,7 +11,9 @@ export const getTodos = async (): Promise<TodoList[]> => {
   }
 };
 
-export const writeTodo = async (newTodo: TodoList): Promise<TodoList> => {
+export const writeTodo = async (
+  newTodo: TodoListType
+): Promise<TodoListType> => {
   try {
     const res = await todos.post("/todos", newTodo);
     return res.data;
@@ -22,7 +24,7 @@ export const writeTodo = async (newTodo: TodoList): Promise<TodoList> => {
   }
 };
 
-export const deleteTodo = async (id: string): Promise<TodoList> => {
+export const deleteTodo = async (id: string): Promise<TodoListType> => {
   try {
     const res = await todos.delete(`/todos/${id}`);
     return res.data;
@@ -32,7 +34,7 @@ export const deleteTodo = async (id: string): Promise<TodoList> => {
   }
 };
 
-export const updateTodo = async (item: TodoList): Promise<TodoList> => {
+export const updateTodo = async (item: TodoListType): Promise<TodoListType> => {
   const changeTodo = { ...item, isDone: !item.isDone };
   try {
     const res = await todos.patch(`/todos/${item.id}`, changeTodo);
