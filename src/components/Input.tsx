@@ -24,6 +24,7 @@ const Input = () => {
     setTodoTitle("");
     setTodoContent("");
   };
+
   return (
     <IS.InputFormStyle onSubmit={onSubmitWriteHandler}>
       <label>오늘의 할일을 입력해 주세요.</label>

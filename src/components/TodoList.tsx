@@ -1,33 +1,11 @@
 import * as QR from "../util/logic/todoListQuery";
-import { TodoListType, TodoListPropsType } from "../util/type";
+import { TodoListPropsType } from "../util/type";
 import * as TS from "../style/todoListStyle";
+import useTodoList from "../util/logic/todoListLogic";
 
 const TodoList = ({ checkDone }: TodoListPropsType) => {
   const { isLoading, isError, data } = QR.useTodoList();
-  const deleteMutation = QR.useDeleteTodoMutation();
-  const updateMutation = QR.useUpdateTodoMutation();
-
-  const onClickUpdateHandler = (item: TodoListType) => {
-    const result = window.confirm(
-      item.isDone ? "아직 진행중이신가요?" : "완료하시겠습니까?"
-    );
-    if (result) {
-      updateMutation.mutate(item);
-      alert("변경하였습니다.");
-    } else {
-      alert("취소되었습니다.");
-    }
-  };
-
-  const onClickDeleteHandler = (id: string) => {
-    const result = window.confirm("삭제하시겠습니까?");
-    if (result) {
-      deleteMutation.mutate(id);
-      alert("삭제되었습니다.");
-    } else {
-      alert("취소되었습니다.");
-    }
-  };
+  const { onClickUpdateHandler, onClickDeleteHandler } = useTodoList();
 
   if (isLoading) {
     return <div>로딩중입니다.</div>;
