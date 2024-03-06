@@ -5,7 +5,8 @@ const App = () => {
   return (
     <>
       <Input />
-      <TodoList />
+      <TodoList checkDone={false} />
+      <TodoList checkDone={true} />
     </>
   );
 };

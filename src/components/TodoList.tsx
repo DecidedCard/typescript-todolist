@@ -1,6 +1,7 @@
 import * as QR from "../util/logic/todoListQuery";
+import { TodoListPropsType } from "../util/type";
 
-const TodoList = () => {
+const TodoList = ({ checkDone }: TodoListPropsType) => {
   const { isLoading, isError, data } = QR.useTodoList();
   const deleteMutation = QR.useDeleteTodoMutation();
   const updateMutation = QR.useUpdateTodoMutation();
@@ -15,8 +16,9 @@ const TodoList = () => {
 
   return (
     <div>
+      <h2>{checkDone ? "Done!" : "Working..."}</h2>
       {data?.map((item) => {
-        return (
+        return checkDone === item.isDone ? (
           <div key={item.id}>
             <p>{item.title}</p>
             <p>{item.content}</p>
@@ -25,6 +27,8 @@ const TodoList = () => {
             </button>
             <button onClick={() => deleteMutation.mutate(item.id)}>삭제</button>
           </div>
+        ) : (
+          false
         );
       })}
     </div>

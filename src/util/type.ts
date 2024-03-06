@@ -4,3 +4,7 @@ export type TodoList = {
   content: string;
   isDone: boolean;
 };
+
+export type TodoListPropsType = {
+  checkDone: boolean;
+};

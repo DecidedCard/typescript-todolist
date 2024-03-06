@@ -1,6 +1,7 @@
 import { useInput } from "../hooks/useInput";
 import { useWriteTodoMutation } from "../util/logic/todoListQuery";
 import { TodoList } from "../util/type";
+import * as IS from "../style/inputStyle";
 
 const Input = () => {
   const [todoTitle, onChangeTodoTitle] = useInput();
@@ -18,19 +19,19 @@ const Input = () => {
     addMutation.mutate(newTodo);
   };
   return (
-    <form onSubmit={onSubmitWriteHandler}>
-      <input
+    <IS.InputFormStyle onSubmit={onSubmitWriteHandler}>
+      <IS.InputStyle
         placeholder="제목을 입력해주세요"
         value={todoTitle}
         onChange={onChangeTodoTitle}
       />
-      <input
+      <IS.InputStyle
         placeholder="내용을 입력해주세요"
         value={todoContent}
         onChange={onChangeTodoContent}
       />
-      <button>등록</button>
-    </form>
+      <IS.InputBtnStyle type="submit">등록</IS.InputBtnStyle>
+    </IS.InputFormStyle>
   );
 };
 
